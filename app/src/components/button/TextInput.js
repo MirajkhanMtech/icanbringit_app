@@ -36,7 +36,8 @@ const PasswordInput = (props) => {
             borderWidth: 1,
             borderRadius: 10,
             paddingHorizontal: '4%',
-            marginTop: '7%'
+            marginTop: '7%',
+            backgroundColor:'#FFFFFF'
         }}>
             <Lock width={20} height={20} />
             <TextInput style={{ flex: 1 }} placeholder={props.title} secureTextEntry={!passwordVisible} />
@@ -50,4 +51,23 @@ const PasswordInput = (props) => {
     );
 };
 
-export { EmailInput, PasswordInput };
+
+const Input = (props) => {
+    return (
+        <View style={{
+            borderColor: '#E4DFDF',
+            borderWidth: 1,
+            borderRadius: 10,
+            paddingHorizontal: '4%',
+            marginTop:'2%',
+            marginBottom:'5%',
+            backgroundColor:'#FFFFFF'
+        }}>
+            <TextInput style={{ flex: 1 }}
+            keyboardType={props.type}
+            placeholder={props.title} />
+        </View>
+    );
+};
+
+export { EmailInput, PasswordInput ,Input};
