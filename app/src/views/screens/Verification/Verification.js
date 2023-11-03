@@ -93,6 +93,10 @@ const App = ({ navigation }) => {
                                     description: "Email Verified Successfully",
                                     type: 'success'
                                 })
+                                setTimeout(() => {
+                                    navigation.navigate('Reset_Password')
+                                }, 3000);
+                                
                             }}
                         />
                     </View>

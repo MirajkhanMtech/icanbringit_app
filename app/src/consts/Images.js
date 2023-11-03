@@ -7,9 +7,10 @@ const Images = {
     f5: require("../assets/images/f5.png"),
     a: require("../assets/images/a.png"),
     g: require("../assets/images/g.png"),
-    f: require("../assets/images/f.png")
+    f: require("../assets/images/f.png"),
     
-
+    pin_map:require("../assets/images/pin_map.png"),
+    bbg:require("../assets/images/bbg.png")
 };
 
 
