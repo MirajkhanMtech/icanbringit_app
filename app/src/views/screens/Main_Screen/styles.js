@@ -22,7 +22,7 @@ const STYLES = StyleSheet.create({
         marginTop: '10%',
     },
     v1: {
-        width: '90%',
+        width: '100%',
         marginVertical: '10%'
     },
     btn1: {
@@ -47,13 +47,14 @@ const STYLES = StyleSheet.create({
         alignSelf: 'center',
     },
     btn2: {
-        width: '100%',
+        width: '83%',
         borderColor: COLORS.primary,
         borderWidth: 1.5,
         height: 45,
         borderRadius: 10,
         justifyContent: 'center',
-        marginTop: '8%'
+        marginTop: '0%',
+        alignSelf:'center'
     },
     txt2: {
         color: COLORS.white,
@@ -71,7 +72,7 @@ const STYLES = StyleSheet.create({
     v2: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-     
+     marginBottom:'5%',
         marginTop: '4%'
     },
     img: {

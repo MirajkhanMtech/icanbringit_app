@@ -32,10 +32,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Onboarding from './app/src/views/screens/Onboarding/Onboarding';
 import Main_Screen from './app/src/views/screens/Main_Screen/Main_Screen';
-
-
-
-
+import SignUp from './app/src/views/screens/SignUp/SignUp';
+import SignIn from './app/src/views/screens/SignIn/SignIn';
+import Forget_Password from './app/src/views/screens/Forget_Password/Forget_Password';
+import Verification from './app/src/views/screens/Verification/Verification';
+import Email_Verification from './app/src/views/screens/Email_Verification/Email_Verification';
 
 
 const Stack = createStackNavigator();
@@ -103,8 +104,13 @@ const App = ({ navigation }) => {
     <NavigationContainer
       independent={true}>
       <Stack.Navigator screenOptions={{ header: () => null }}>
-        {/* <Stack.Screen name="Onboarding" component={Onboarding} /> */}
+         <Stack.Screen name="Onboarding" component={Onboarding} />
         <Stack.Screen name="Main_Screen" component={Main_Screen} />
+        <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="SignIn" component={SignIn} /> 
+        <Stack.Screen name="Forget_Password" component={Forget_Password} />
+        <Stack.Screen name="Verification" component={Verification} />
+        <Stack.Screen name="Email_Verification" component={Email_Verification} />
         
       </Stack.Navigator>
     </NavigationContainer>

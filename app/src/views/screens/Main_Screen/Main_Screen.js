@@ -32,6 +32,8 @@ import { base_url, base_url1 } from '../../../consts/base_url';
 import appImages from './../../../consts/Images'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import CustomButton from '../../../components/button/Custom_Button';
+
 import styles from './styles';
 
 function Onboarding({ navigation }) {
@@ -46,6 +48,7 @@ function Onboarding({ navigation }) {
     }, []);
     return (
         <SafeAreaView style={{ flex: 1 }}>
+            <ScrollView>
             <StatusBar barStyle={'dark-content'} backgroundColor={'transparent'} translucent={true} />
             <View style={styles.mainView}>
                 <Image source={appImages.f5} style={styles.image} resizeMode={'contain'} />
@@ -53,11 +56,20 @@ function Onboarding({ navigation }) {
 
 
                 <View style={styles.v1}>
-                    <TouchableOpacity activeOpacity={0.7} style={styles.btn1}>
-                        <Text style={styles.txt2}>Create Account</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity activeOpacity={0.7} style={styles.btn2}>
+    
+                    <View style={{ alignSelf: 'center', marginTop: '7%', marginBottom: '3%' }}>
+                        <CustomButton
+                            title="Create Account"
+                            load={false}
+                            // checkdisable={inn == '' && cm == '' ? true : false}
+                            customClick={() => {
+                                navigation.navigate('SignUp')
+                            }}
+                        />
+                    </View>
+                    <TouchableOpacity
+                    onPress={()=>{navigation.navigate('SignIn')}}
+                    activeOpacity={0.7} style={styles.btn2}>
                         <Text style={styles.txt3}>Already have an account</Text>
                     </TouchableOpacity>
                 </View>
@@ -76,6 +88,7 @@ function Onboarding({ navigation }) {
                 </View>
 
             </View>
+            </ScrollView>
         </SafeAreaView>
     );
 }
