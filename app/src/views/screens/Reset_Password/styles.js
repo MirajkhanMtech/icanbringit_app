@@ -13,6 +13,16 @@ const STYLES = StyleSheet.create({
         flex: 1,
         backgroundColor: '#ADDAFA',
     },
+    errors: {
+        fontSize: 11,
+        fontWeight: "bold",
+        color: "red",
+        marginTop: 5,
+      },
+      input:{
+        backgroundColor:COLORS.white,
+        borderColor:COLORS.white
+    },
 
 })
 

@@ -14,6 +14,7 @@ pink : '#ff2d5f',
 red: '#FF0000',
 blue: '#03D2FC',
 success: '#00D215',
-
+black: 'black',
+iconColor:'#949494'
 }
 export default COLORS;

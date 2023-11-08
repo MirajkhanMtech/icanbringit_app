@@ -44,6 +44,12 @@ const STYLES = StyleSheet.create({
         fontFamily: 'Montserrat-Bold',
         fontSize: heightPercentageToDP(1.8)
     },
+    errors: {
+        fontSize: 11,
+        fontWeight: "bold",
+        color: "red",
+        marginTop: 5,
+      },
 })
 
 export default STYLES; 
