@@ -32,7 +32,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from './styles';
 LogBox.ignoreAllLogs();
 
-const App = ({ navigation }) => {
+const ThankYou = ({ navigation }) => {
     const isFocused = useIsFocused()
     const [count, setcount] = useState(0)
     const gett = async () => {
@@ -104,4 +104,4 @@ const App = ({ navigation }) => {
     )
 }
 
-export default App;
+export default ThankYou; 

@@ -12,6 +12,7 @@ import {
   Platform,
   Alert,
   BackHandler,
+  TouchableOpacity,
 } from 'react-native';
 import {
   NavigationContainer,
@@ -58,6 +59,10 @@ import Add from './app/src/views/screens/Add/Add';
 import AboutYourSelf from './app/src/views/screens/AboutYourSelf/AboutYourSelf';
 import ProfilePic from './app/src/views/screens/ProfilePic/ProfilePic';
 import AddLocation from './app/src/views/screens/AddLocation/AddLocation';
+import Notifications from './app/src/views/screens/Notifications/Notifications';
+import Parties from './app/src/views/screens/Parties/Parties';
+import Filter from './app/src/views/screens/Filter/Filter';
+import CreateEvent from './app/src/views/screens/CreateEvent/CreateEvent';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -80,7 +85,7 @@ const getData = async () => {
   }
 };
 
-function MyTabs({route, naigation}) {
+function MyTabs({route, navigation}) {
   return (
     <SafeAreaView style={{flex: 1}}>
       <Tab.Navigator
@@ -129,6 +134,8 @@ function MyTabs({route, naigation}) {
             tabBarLabel: '',
 
             tabBarIcon: ({tintColor, focused}) => (
+              <TouchableOpacity  onPress={() => navigation.navigate('CreateEvent')}>
+
               <View
                 style={{
                   bottom: 20,
@@ -145,6 +152,7 @@ function MyTabs({route, naigation}) {
                   color={focused ? COLORS.blue : COLORS.greylight}
                 />
               </View>
+              </TouchableOpacity>
             ),
           }}
           name="Add"
@@ -221,7 +229,13 @@ const App = ({navigation}) => {
           <Stack.Screen name="AboutYourSelf" component={AboutYourSelf} />
           <Stack.Screen name="ProfilePic" component={ProfilePic} />
           {/* <Stack.Screen name="AddLocation" component={AddLocation} /> */}
+          <Stack.Screen name="Notifications" component={Notifications} />
+          <Stack.Screen name="Parties" component={Parties} />
+          <Stack.Screen name="Filter" component={Filter} />
+          <Stack.Screen name="CreateEvent" component={CreateEvent} />
 
+
+          
           
           
         </Stack.Navigator>

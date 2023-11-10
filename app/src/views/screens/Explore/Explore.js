@@ -8,15 +8,39 @@ import {
   FlatList,
   ScrollView,
 } from 'react-native';
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import COLORS from '../../../consts/colors';
 import Images from '../../../consts/Images';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FastImage from 'react-native-fast-image';
 import CustomText from '../../../components/Text';
 import Icon from '../../../consts/Icons';
+import RBSheet from 'react-native-raw-bottom-sheet';
+import {Picker} from '@react-native-picker/picker';
+import DatePicker from 'react-native-date-picker';
+import InnerButton from '../../../components/InnerButton/InnerButton';
+import Custom_Button from '../../../components/button/Custom_Button';
+const Explore = ({navigation}) => {
+  const ref_RBSheetCamera = useRef(null);
+  const [selectedGender, setSelectedGender] = useState('Select Type'); // Default gender value
+  const genderOptions = [
+    {label: 'Select Type', value: 'Select Gender'},
+    {label: 'Online', value: 'Online'},
+  ];
 
-const Explore = () => {
+  const [selectedCategory, setSelectedCategory] = useState('Select Type'); // Default gender value
+  const categoryOptions = [
+    {label: 'Select Category', value: 'Select Category'},
+    {label: 'Category1', value: 'Category1'},
+    {label: 'Category2', value: 'Category2'},
+    {label: 'Category3', value: 'Category3'},
+    {label: 'Category4', value: 'Category4'},
+    {label: 'Category5', value: 'Category5'},
+  ];
+  const [date, setDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [open, setOpen] = useState(false);
+  const [endOpen, setEndOpen] = useState(false);
   const Data = [
     {
       id: 1,
@@ -74,8 +98,16 @@ const Explore = () => {
           </View>
         </View>
         <View style={{flexDirection: 'row'}}>
-          <Image source={Images.NotificationsIcon} style={{marginRight: 20}} />
-          <Image source={Images.filterIcon} />
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Notifications')}>
+            <Image
+              source={Images.NotificationsIcon}
+              style={{marginRight: 20}}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => ref_RBSheetCamera.current.open()}>
+            <Image source={Images.filterIcon} />
+          </TouchableOpacity>
         </View>
       </View>
       <View
@@ -152,7 +184,7 @@ const Explore = () => {
             marginTop: 20,
           }}>
           <Text>Parties</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Parties')}>
             <Text style={{color: COLORS.blue, textDecorationLine: 'underline'}}>
               View All
             </Text>
@@ -174,14 +206,15 @@ const Explore = () => {
                   />
                   <CustomText text={item.title} style={styles.titleView} />
                   <CustomText text={item.time} style={styles.timeView} />
-                <View style={{flexDirection:'row', marginTop:5}}>
-                <TouchableOpacity style={styles.cardBtn}>
-                    <CustomText text={item.online} />
-                  </TouchableOpacity>
-                  <TouchableOpacity style={[styles.cardBtn,{backgroundColor:'#FF6B01'}]}>
-                    <CustomText text={item.privte} style={styles.textView} />
-                  </TouchableOpacity>
-                </View>
+                  <View style={{flexDirection: 'row', marginTop: 5}}>
+                    <TouchableOpacity style={styles.cardBtn}>
+                      <CustomText text={item.online} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={[styles.cardBtn, {backgroundColor: '#FF6B01'}]}>
+                      <CustomText text={item.privte} style={styles.textView} />
+                    </TouchableOpacity>
+                  </View>
                 </View>
               );
             }}
@@ -216,14 +249,15 @@ const Explore = () => {
                   />
                   <CustomText text={item.title} style={styles.titleView} />
                   <CustomText text={item.time} style={styles.timeView} />
-                <View style={{flexDirection:'row', marginTop:5}}>
-                <TouchableOpacity style={styles.cardBtn}>
-                    <CustomText text={item.online} />
-                  </TouchableOpacity>
-                  <TouchableOpacity style={[styles.cardBtn,{backgroundColor:'#FF6B01'}]}>
-                    <CustomText text={item.privte} style={styles.textView} />
-                  </TouchableOpacity>
-                </View>
+                  <View style={{flexDirection: 'row', marginTop: 5}}>
+                    <TouchableOpacity style={styles.cardBtn}>
+                      <CustomText text={item.online} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={[styles.cardBtn, {backgroundColor: '#FF6B01'}]}>
+                      <CustomText text={item.privte} style={styles.textView} />
+                    </TouchableOpacity>
+                  </View>
                 </View>
               );
             }}
@@ -231,6 +265,132 @@ const Explore = () => {
         </View>
         <View style={{marginBottom: 80}} />
       </ScrollView>
+
+      <RBSheet
+        ref={ref_RBSheetCamera}
+        closeOnDragDown={true}
+        closeOnPressMask={false}
+        animationType="fade"
+        minClosingHeight={0}
+        customStyles={{
+          wrapper: {
+            backgroundColor: 'rgba(52, 52, 52, 0.5)',
+          },
+          draggableIcon: {
+            backgroundColor: COLORS.greylight,
+            height: 3,
+            width: 50,
+          },
+          container: {
+            borderTopLeftRadius: 10,
+            borderTopRightRadius: 10,
+            height: '60%',
+          },
+        }}>
+        <View
+          style={{
+            marginHorizontal: 20,
+          }}>
+          <CustomText style={styles.titleText} text={'Apply Filter'} />
+          {/* Select type */}
+          <CustomText
+            text={'Event Type'}
+            style={{
+              fontSize: 14,
+              marginTop: 10,
+              color: COLORS.black,
+              fontWeight: 'bold',
+            }}
+          />
+          <View
+            style={{
+              borderWidth: 0.5,
+              borderColor: 'black',
+              marginTop: 10,
+              borderRadius: 10,
+            }}>
+            <Picker
+              selectedValue={selectedGender}
+              onValueChange={itemValue => setSelectedGender(itemValue)}
+              style={styles.picker}>
+              {genderOptions.map((gender, index) => (
+                <Picker.Item
+                  key={index}
+                  label={gender.label}
+                  value={gender.value}
+                />
+              ))}
+            </Picker>
+          </View>
+          {/* Select Category */}
+          <CustomText
+            text={'Select Category'}
+            style={{
+              fontSize: 14,
+              marginTop: 10,
+              color: COLORS.black,
+              fontWeight: 'bold',
+            }}
+          />
+
+          <View
+            style={{
+              borderWidth: 0.5,
+              borderColor: 'black',
+              marginTop: 10,
+              borderRadius: 10,
+            }}>
+            <Picker
+              selectedValue={selectedCategory}
+              onValueChange={itemValue => setSelectedCategory(itemValue)}
+              style={styles.picker}>
+              {categoryOptions.map((gender, index) => (
+                <Picker.Item
+                  key={index}
+                  label={gender.label}
+                  value={gender.value}
+                />
+              ))}
+            </Picker>
+          </View>
+          {/* Date */}
+          <DatePicker
+            modal
+            open={open}
+            date={date}
+            onConfirm={date => {
+              setOpen(false);
+              setDate(date);
+            }}
+            onCancel={() => {
+              setOpen(false);
+            }}
+          />
+
+          <CustomText
+            text={'Select Date'}
+            style={{
+              fontSize: 14,
+              marginTop: 10,
+              color: COLORS.black,
+              fontWeight: 'bold',
+            }}
+          />
+          <InnerButton
+            Lefticon={true}
+            buttonText={date.toDateString()}
+            onPress={() => setOpen(true)}
+            name="calendar"
+            type={'feather'}
+            color={COLORS.black}
+            size={20}
+          />
+          <View style={{marginTop:20, alignSelf:'center'}}>
+
+          <Custom_Button title={'Apply'}  />
+          </View>
+        </View>
+      </RBSheet>
     </View>
   );
 };
@@ -293,11 +453,16 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.blue,
     padding: 8,
     marginHorizontal: 10,
-    borderRadius:20,
-    width:'40%',
-    alignItems:'center'
+    borderRadius: 20,
+    width: '40%',
+    alignItems: 'center',
   },
-  textView:{
-    color:COLORS.white
-  }
+  textView: {
+    color: COLORS.white,
+  },
+  titleText: {
+    color: COLORS.primary,
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
 });

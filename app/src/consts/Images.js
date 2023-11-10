@@ -17,7 +17,12 @@ const Images = {
     SuggestionBG1:require("../assets/images/SuggestionBG1.png"),
     PartiesBg1:require("../assets/images/PartiesBg1.png"),
     profilePic:require("../assets/images/profilePic.png"),
+    profiledp:require("../assets/images/profiledp.png"),
+    coverPhoto:require("../assets/images/coverPhoto.png"),
+    progress1:require("../assets/images/progress1.png"),
 
+    
+    
     
 
     

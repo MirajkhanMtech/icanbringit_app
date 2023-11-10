@@ -78,7 +78,7 @@ const ProfilePic = ({navigation}) => {
           load={false}
           // checkdisable={inn == '' && cm == '' ? true : false}
           customClick={() => {
-            navigation.navigate('Add_Location',);
+            navigation.navigate('Select_preferences',);
           }}
         />
       </View>
