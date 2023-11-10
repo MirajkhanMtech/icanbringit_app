@@ -10,7 +10,18 @@ const Images = {
     f: require("../assets/images/f.png"),
     
     pin_map:require("../assets/images/pin_map.png"),
-    bbg:require("../assets/images/bbg.png")
+    bbg:require("../assets/images/bbg.png"),
+    filterIcon:require("../assets/images/filterIcon.png"),
+    locationIcon:require("../assets/images/locationIcon.png"),
+    NotificationsIcon:require("../assets/images/NotificationsIcon.png"),
+    SuggestionBG1:require("../assets/images/SuggestionBG1.png"),
+    PartiesBg1:require("../assets/images/PartiesBg1.png"),
+    profilePic:require("../assets/images/profilePic.png"),
+
+    
+
+    
+
 };
 
 
