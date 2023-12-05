@@ -30,6 +30,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+
 
 
 
@@ -63,6 +65,24 @@ import Notifications from './app/src/views/screens/Notifications/Notifications';
 import Parties from './app/src/views/screens/Parties/Parties';
 import Filter from './app/src/views/screens/Filter/Filter';
 import CreateEvent from './app/src/views/screens/CreateEvent/CreateEvent';
+import ViewEvent from './app/src/views/screens/ViewEvent/ViewEvent';
+import ReminderScreen from './app/src/views/screens/ReminderScreen/ReminderScreen';
+import ChatList from './app/src/views/screens/ChatList/ChatList';
+import Report from './app/src/views/screens/Report/Report';
+import DescribeIssue from './app/src/views/screens/DescribeIssue/DescribeIssue';
+import Profile from './app/src/views/screens/Profile/Profile';
+import PreferredFood from './app/src/views/screens/PreferredFood/PreferredFood';
+import PreferredLocation from './app/src/views/screens/PreferredLocation/PreferredLocation';
+import PreferedEvents from './app/src/views/screens/PreferedEvents/PreferedEvents';
+import Setting from './app/src/views/screens/Setting/Setting';
+import PrivacyPolicy from './app/src/views/screens/PrivacyPolicy/PrivacyPolicy';
+import UpdatePassword from './app/src/views/screens/UpdatePassword/UpdatePassword';
+import EditProfile from './app/src/views/screens/EditProfile/EditProfile';
+import GoPremium from './app/src/views/screens/GoPremium/GoPremium';
+import MyEvent from './app/src/views/screens/MyEvent/MyEvent';
+import AttendeesList from './app/src/views/screens/AttendeesList/AttendeesList';
+import AssignedTask from './app/src/views/screens/AssignedTask/AssignedTask';
+import AssignedTaskDetails from './app/src/views/screens/AssignedTaskDetails/AssignedTaskDetails';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -87,7 +107,7 @@ const getData = async () => {
 
 function MyTabs({route, navigation}) {
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1,}}>
       <Tab.Navigator
         screenOptions={{
           tabBarStyle: {
@@ -160,32 +180,35 @@ function MyTabs({route, navigation}) {
         />
          <Tab.Screen
           options={{
-            tabBarIcon: ({tintColor, focused}) => (
-              <Icon
-                name="home"
-                size={24}
-                color={focused ? COLORS.blue : COLORS.greylight}
-              />
-            ),
-          }}
-          name="Home"
-          component={Home}
-        />
-       
-        <Tab.Screen
-          options={{
             tabBarLabel: 'Chat',
             tabBarIcon: ({tintColor, focused}) => (
-              <Icon
-                name="home"
+            <TouchableOpacity >
+                <MaterialIcons
+                name="chat"
+                size={24}
+                color={focused ? COLORS.blue : COLORS.greylight}
+              />
+            </TouchableOpacity>
+            ),
+          }}
+          name="ChatList"
+          component={ChatList}
+        />
+         <Tab.Screen
+          options={{
+            tabBarIcon: ({tintColor, focused}) => (
+              <FontAwesome5
+                name="user"
                 size={24}
                 color={focused ? COLORS.blue : COLORS.greylight}
               />
             ),
           }}
-          name="Chat"
-          component={Chat}
+          name="Profile"
+          component={Profile}
         />
+       
+       
       </Tab.Navigator>
     </SafeAreaView>
   );
@@ -233,10 +256,26 @@ const App = ({navigation}) => {
           <Stack.Screen name="Parties" component={Parties} />
           <Stack.Screen name="Filter" component={Filter} />
           <Stack.Screen name="CreateEvent" component={CreateEvent} />
+          <Stack.Screen name="ViewEvent" component={ViewEvent} />
+          <Stack.Screen name="ReminderScreen" component={ReminderScreen} />
+          <Stack.Screen name="ChatList" component={ChatList} />
+          <Stack.Screen name="Chat" component={Chat} />
+          <Stack.Screen name="Report" component={Report} />
+          <Stack.Screen name="DescribeIssue" component={DescribeIssue} />
+          <Stack.Screen name="PreferredFood" component={PreferredFood} />
+          <Stack.Screen name="PreferredLocation" component={PreferredLocation} />
+          <Stack.Screen name="PreferedEvents" component={PreferedEvents} />
+          <Stack.Screen name="Setting" component={Setting} />
+          <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
+          <Stack.Screen name="UpdatePassword" component={UpdatePassword} />
+          <Stack.Screen name="EditProfile" component={EditProfile} />
+          <Stack.Screen name="GoPremium" component={GoPremium} />
+          <Stack.Screen name="MyEvent" component={MyEvent} />
+          <Stack.Screen name="AttendeesList" component={AttendeesList} />
+          <Stack.Screen name="AssignedTask" component={AssignedTask} />
+          <Stack.Screen name="AssignedTaskDetails" component={AssignedTaskDetails} />
 
 
-          
-          
           
         </Stack.Navigator>
       </NavigationContainer>

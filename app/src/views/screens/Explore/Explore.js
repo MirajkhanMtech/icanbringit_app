@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   FlatList,
   ScrollView,
+  SafeAreaView,
 } from 'react-native';
 import React, {useRef, useState} from 'react';
 import COLORS from '../../../consts/colors';
@@ -87,8 +88,8 @@ const Explore = ({navigation}) => {
     },
   ];
   return (
-    <View
-      style={{flex: 1, backgroundColor: COLORS.white, paddingHorizontal: 20}}>
+    <SafeAreaView
+      style={{flexGrow: 1, backgroundColor: COLORS.white, paddingHorizontal: 20, paddingTop:25}}>
       <View style={styles.headerView}>
         <View style={{flexDirection: 'row'}}>
           <Image source={Images.locationIcon} />
@@ -134,7 +135,7 @@ const Explore = ({navigation}) => {
             justifyContent: 'space-between',
             marginTop: 20,
           }}>
-          <Text>AI Suggestions</Text>
+          <Text style={{fontWeight:'bold', color:COLORS.black}}>AI Suggestions</Text>
           <TouchableOpacity>
             <Text style={{color: COLORS.blue, textDecorationLine: 'underline'}}>
               Suggest More
@@ -142,21 +143,15 @@ const Explore = ({navigation}) => {
           </TouchableOpacity>
         </View>
 
-        <View>
-          <FlatList
-            showsHorizontalScrollIndicator={false}
-            // numColumns={2}
-            data={Data}
-            horizontal
-            renderItem={({item}) => {
-              return (
+        <View style={{flexDirection:'row'}}>
+     
                 <View style={styles.flatlist_container}>
                   <FastImage
-                    source={item.image}
-                    style={{height: 200, width: 200}} // Set a fixed height and width for the FastImage
+                    source={Images.SuggestionBG1}
+                    style={{height: 150, width: 150}} 
                     resizeMode="contain">
                     <View style={styles.cardInnerView}>
-                      <CustomText text={item.title} style={styles.txt} />
+                      <CustomText text={''} style={styles.txt} />
                       <View style={{flexDirection: 'row'}}>
                         <Icon
                           name={'access-time'}
@@ -173,17 +168,39 @@ const Explore = ({navigation}) => {
                     </View>
                   </FastImage>
                 </View>
-              );
-            }}
-          />
+                <View style={styles.flatlist_container}>
+                  <FastImage
+                    source={Images.SuggestionBG1}
+                    style={{height: 150, width: 150}} 
+                    resizeMode="contain">
+                    <View style={styles.cardInnerView}>
+                      <CustomText text={''} style={styles.txt} />
+                      <View style={{flexDirection: 'row'}}>
+                        <Icon
+                          name={'access-time'}
+                          type={'MaterialIcons'}
+                          color={'white'}
+                          size={15}
+                          style={{marginTop: 5}}
+                        />
+                        <CustomText
+                          text={'19 Dec 2023 - 02:00'}
+                          style={[styles.txt, {marginLeft: 5}]}
+                        />
+                      </View>
+                    </View>
+                  </FastImage>
+                </View>
+             
+             
         </View>
         <View
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
-            marginTop: 20,
+            // marginTop: 20,
           }}>
-          <Text>Parties</Text>
+          <Text style={{color:COLORS.black, fontWeight:'bold'}}>Parties</Text>
           <TouchableOpacity onPress={() => navigation.navigate('Parties')}>
             <Text style={{color: COLORS.blue, textDecorationLine: 'underline'}}>
               View All
@@ -199,7 +216,8 @@ const Explore = ({navigation}) => {
             renderItem={({item}) => {
               return (
                 <View style={styles.flatlist_container2}>
-                  <Image
+               <TouchableOpacity onPress={()=> navigation.navigate('ViewEvent')}>
+               <Image
                     source={item.image}
                     resizeMode="contain"
                     style={styles.imageView}
@@ -215,6 +233,7 @@ const Explore = ({navigation}) => {
                       <CustomText text={item.privte} style={styles.textView} />
                     </TouchableOpacity>
                   </View>
+               </TouchableOpacity>
                 </View>
               );
             }}
@@ -241,7 +260,7 @@ const Explore = ({navigation}) => {
             horizontal
             renderItem={({item}) => {
               return (
-                <View style={styles.flatlist_container2}>
+                <View style={[styles.flatlist_container2,{width:220}]}>
                   <Image
                     source={item.image}
                     resizeMode="contain"
@@ -391,7 +410,7 @@ const Explore = ({navigation}) => {
           </View>
         </View>
       </RBSheet>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -411,6 +430,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginTop: 10,
     // backgroundColor:'red'
+    width:'45%'
   },
   cardInnerView: {
     // alignItems:'flex-end',
@@ -429,22 +449,23 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   flatlist_container2: {
-    height: 250,
+    height: 230,
     marginHorizontal: 10,
     marginTop: 10,
     borderRadius: 10,
     borderColor: COLORS.black,
     borderWidth: 0.5,
-    width: 180,
+    width: 160,
   },
   titleView: {
-    color: COLORS.secondary,
+    color: COLORS.green,
     fontSize: 20,
     marginHorizontal: 10,
     fontWeight: 'bold',
   },
   imageView: {
-    width: 190,
+    width: 160,
+    alignSelf:'center'
   },
   timeView: {
     marginHorizontal: 10,

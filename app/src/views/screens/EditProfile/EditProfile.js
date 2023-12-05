@@ -1,22 +1,36 @@
 import {
-  Image,
-  PermissionsAndroid,
+  SafeAreaView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+  PermissionsAndroid,
 } from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
-import Signin_signup_header from '../../../components/button/Signin_signup_header';
+import SettingHeader from '../../../components/SettingHeader/SettingHeader';
+import COLORS from '../../../consts/colors';
+import CustomText from '../../../components/Text';
 import Images from '../../../consts/Images';
-import Custom_Button from '../../../components/button/Custom_Button';
+import InputField from '../../../components/InputFiled';
+import DropDownPicker from 'react-native-dropdown-picker';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import COLORS from '../../../consts/colors';
+import Custom_Button from '../../../components/button/Custom_Button';
+import CustomSnackbar from '../../../components/CustomSnackbar/CustomSnackbar';
 
-const ProfilePic = ({navigation}) => {
+const EditProfile = ({navigation}) => {
+  const [openItem, setOpenItem] = useState(false);
+
+  const [loadedValue, setLoadedValue] = useState(null);
+  const [items, setItems] = useState([
+    {label: 'Male', value: 'item11'},
+    {label: 'Female', value: 'item22'},
+    {label: 'Prefer not to say', value: 'item33'},
+  ]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageUri, setImageUri] = useState(null);
   const [selectedItem, setSelectedItem] = useState('');
@@ -67,7 +81,6 @@ const ProfilePic = ({navigation}) => {
     }
   };
 
-  // Call this function before using the camera
   useEffect(() => {
     requestCameraPermission();
   }, []);
@@ -82,40 +95,100 @@ const ProfilePic = ({navigation}) => {
       ref_RBSheetCamera.current.close();
     });
   };
-  
+  const [snackbarVisible, setSnackbarVisible] = useState(false);
+  const dismissSnackbar = () => {
+    setSnackbarVisible(true);
+  };
 
+  const handleUpdatePassword = async () => {
+    setSnackbarVisible(true);
+    setTimeout(() => {
+      setSnackbarVisible(false);
+      navigation.navigate('Setting');
+    }, 3000);
+  };
+  const UpdateProfile = () => {
+    handleUpdatePassword();
+  };
   return (
-    <View style={{flex: 1}}>
-      <Signin_signup_header title="Add Profile Photo" />
-      <View>
-        <TouchableOpacity
-          style={{alignSelf: 'center'}}
-          onPress={() => ref_RBSheetCamera.current.open()}>
-          {selectedImage ? (
-            <Image
-              source={{uri: selectedImage}}
-              style={{width: 200, height: 200}}
-              resizeMode="contain"
+    <SafeAreaView
+      style={{flexGrow: 1, paddingTop: 25, backgroundColor: COLORS.white}}>
+      <ScrollView>
+        <SettingHeader title={'Edit Profile'} />
+        <View
+          style={{
+            alignSelf: 'center',
+            justifyContent: 'center',
+            marginTop: 50,
+            alignContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Image source={Images.avatar} style={{}} />
+          <TouchableOpacity onPress={() => ref_RBSheetCamera.current.open()}>
+            <CustomText
+              text={'Change Photo'}
+              style={{
+                marginTop: 10,
+                fontSize: 18,
+                fontWeight: 'bold',
+                color: COLORS.green,
+                textDecorationLine: 'underline',
+              }}
             />
-          ) : (
-            <Image
-              source={Images.profilePic}
-              style={{width: 200, height: 200}}
-              resizeMode="contain"
+          </TouchableOpacity>
+        </View>
+        <View style={{marginHorizontal: 20, marginTop: 20}}>
+          <CustomText
+            text={'Full Name'}
+            style={{fontWeight: 'bold', color: COLORS.black}}
+          />
+          <InputField placeholder={'John Doe'} />
+          <View style={{marginTop: 20}}>
+            <CustomText
+              text={'Gender'}
+              style={{fontWeight: 'bold', color: COLORS.black}}
             />
-          )}
-        </TouchableOpacity>
-      </View>
-      <View style={{marginTop: '70%', alignSelf: 'center'}}>
-        <Custom_Button
-          title="Continue"
-          load={false}
-          // checkdisable={inn == '' && cm == '' ? true : false}
-          customClick={() => {
-            navigation.navigate('Select_preferences');
-          }}
-        />
-      </View>
+            <DropDownPicker
+              placeholder="Gender"
+              open={openItem}
+              value={loadedValue}
+              items={items}
+              setOpen={setOpenItem}
+              setValue={setLoadedValue}
+              setItems={setItems}
+              style={{
+                marginTop: 10,
+                borderColor: '#D1D0E0',
+                paddingHorizontal: 20,
+              }}
+            />
+          </View>
+          <CustomText
+            text={'Age'}
+            style={{fontWeight: 'bold', color: COLORS.black}}
+          />
+          <InputField placeholder={'29'} />
+          <CustomText
+            text={'City'}
+            style={{fontWeight: 'bold', color: COLORS.black}}
+          />
+          <InputField placeholder={'Washington'} />
+          <CustomText
+            text={'Country'}
+            style={{fontWeight: 'bold', color: COLORS.black}}
+          />
+          <InputField placeholder={'United States'} />
+        </View>
+        <View
+          style={{
+            alignContent: 'center',
+            alignItems: 'center',
+            marginTop: 40,
+            bottom: 10,
+          }}>
+          <Custom_Button title={'Edit'} customClick={()=>UpdateProfile()}/>
+        </View>
+      </ScrollView>
       <RBSheet
         ref={ref_RBSheetCamera}
         closeOnDragDown={true}
@@ -189,10 +262,16 @@ const ProfilePic = ({navigation}) => {
           </TouchableOpacity>
         </View>
       </RBSheet>
-    </View>
+      <CustomSnackbar
+        message={'Success'}
+        messageDescription={'Profile Edited successfully'}
+        onDismiss={dismissSnackbar}
+        visible={snackbarVisible}
+      />
+    </SafeAreaView>
   );
 };
 
-export default ProfilePic;
+export default EditProfile;
 
 const styles = StyleSheet.create({});

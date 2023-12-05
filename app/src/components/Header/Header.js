@@ -8,23 +8,20 @@ import {
     StatusBar,
   } from 'react-native';
   import React from 'react';
-  import {Button} from 'react-native-paper';
   import {useNavigation} from '@react-navigation/native';
-  import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
   import Back from './../../assets/svg/back.svg';
   import {
     heightPercentageToDP,
-    widthPercentageToDP,
   } from 'react-native-responsive-screen';
-  export default function Header({title}) {
+  export default function Header({title,txtStyle}) {
     const navigation = useNavigation();
     return (
       <View style={{}}>
-        {/* <StatusBar
+        <StatusBar
           barStyle={'dark-content'}
           backgroundColor={'transparent'}
           translucent={true}
-        /> */}
+        />
   
         <TouchableOpacity
           activeOpacity={0.7}
@@ -39,7 +36,7 @@ import {
           />
         </TouchableOpacity>
   
-        <Text style={styles.txt}>{title}</Text>
+        <Text style={[styles.txt,txtStyle]}>{title}</Text>
   
       </View>
     );

@@ -5,7 +5,7 @@ import CustomText from '../../../components/Text'
 import Images from '../../../consts/Images'
 import COLORS from '../../../consts/colors'
 
-const Parties = () => {
+const Parties = ({navigation}) => {
     const PartiesData = [
         {
           id: 1,
@@ -88,6 +88,8 @@ const Parties = () => {
             renderItem={({item}) => {
               return (
                 <View style={styles.flatlist_container2}>
+                  <TouchableOpacity onPress={()=> navigation.navigate('ViewEvent')}>
+
                   <Image
                     source={item.image}
                     resizeMode="contain"
@@ -104,6 +106,7 @@ const Parties = () => {
                       <CustomText text={item.privte} style={styles.textView} />
                     </TouchableOpacity>
                   </View>
+                  </TouchableOpacity>
                 </View>
               );
             }}

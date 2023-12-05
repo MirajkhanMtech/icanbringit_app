@@ -58,7 +58,7 @@ LocaleConfig.locales['en'] = {
 
 LocaleConfig.defaultLocale = 'en';
 
-const Schedule = () => {
+const Schedule = ({navigation}) => {
   const [selectedDate, setSelectedDate] = useState('');
   const [button1Color, setButton1Color] = useState('white');
   const [button2Color, setButton2Color] = useState('transparent');
@@ -122,10 +122,12 @@ const Schedule = () => {
     { id: '3', user: 'Candyland Carnival' },
     { id: '3', user: 'Candyland Carnival' },
 
-    // Add more data as needed
   ];
   const renderItem2 = ({ item }) => (
-    <View style={styles.itemContainer}>
+    <TouchableOpacity  
+
+    onPress={()=> navigation.navigate('AssignedTask')}
+    style={styles.itemContainer}>
       <Image source={Images.profiledp} style={styles.userImage2} />
       <View style={styles.userInfo}>
         <Text style={styles.userName2}>{item.user}</Text>
@@ -138,7 +140,7 @@ const Schedule = () => {
         </View>
       </View>
       
-    </View>
+    </TouchableOpacity>
   );
   const renderItem = ({item}) => (
     <View style={styles.card}>
@@ -146,7 +148,9 @@ const Schedule = () => {
       <View style={styles.textContainer}>
         <Text style={styles.userName}>{item.user}</Text>
         <Text style={styles.notificationTime}>{item.time}</Text>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity 
+        onPress={()=> navigation.navigate('ViewEvent')}
+        style={styles.button}>
           <Text style={styles.buttonText}>Online Event</Text>
         </TouchableOpacity>
       </View>
@@ -234,7 +238,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginTop: 20,
-    backgroundColor: '#616161',
+    backgroundColor: '#D1D0E0',
     borderRadius: 30,
     height: 45,
   },
