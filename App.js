@@ -231,6 +231,7 @@ const App = ({navigation}) => {
           <Stack.Screen
             name="Email_Verification"
             component={Email_Verification}
+            // kjfksdjkdsf
           />
           <Stack.Screen
             name="Tell_Us_About_Yourself"
