@@ -170,7 +170,8 @@ function Login({route, navigation }) {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: COLORS.white,
+        // backgroundColor: COLORS.red,
+        backgroundColor:'red'
 
       }}
     >

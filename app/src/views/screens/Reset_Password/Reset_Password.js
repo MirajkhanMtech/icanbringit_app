@@ -36,9 +36,10 @@ import FVR_headers from '../../../components/button/FVR_headers';
 import FlashMessage, {showMessage} from 'react-native-flash-message';
 import {Formik} from 'formik';
 import {resetPasswordValidationSchema} from '../../../Utills/Validations';
-import InputField from '../../../components/InputFiled';
+// import InputField from '../../../components/InputFiled';
 import CustomText from '../../../components/Text';
 import COLORS from '../../../consts/colors';
+import InputField from '../../../components/CustomSnackbar/InputFiled';
 
 LogBox.ignoreAllLogs();
 

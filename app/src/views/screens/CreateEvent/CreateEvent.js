@@ -19,10 +19,11 @@ import {useIsFocused} from '@react-navigation/native';
 import styles from './styles';
 import Back from './../../../assets/svg/back.svg';
 import COLORS from '../../../consts/colors';
-import InputField from '../../../components/InputFiled';
+// import InputField from '../../../components/InputFiled';
 import {Picker} from '@react-native-picker/picker';
 import Images from '../../../consts/Images';
 import InnerButton from '../../../components/InnerButton/InnerButton';
+import InputField from '../../../components/CustomSnackbar/InputFiled';
 
 LogBox.ignoreAllLogs();
 

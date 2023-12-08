@@ -1,9 +1,10 @@
 import {ScrollView, StatusBar, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import Signin_signup_header from '../../../components/button/Signin_signup_header';
-import InputField from '../../../components/InputFiled';
+// import InputField from '../../../components/InputFiled';
 import Custom_Button from '../../../components/button/Custom_Button';
 import {Picker} from '@react-native-picker/picker';
+import InputField from '../../../components/CustomSnackbar/InputFiled';
 
 const AboutYourSelf = ({navigation}) => {
   const [selectedGender, setSelectedGender] = useState('Select Gender'); // Default gender value

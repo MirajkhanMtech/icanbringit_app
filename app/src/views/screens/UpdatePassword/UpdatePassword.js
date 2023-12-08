@@ -4,11 +4,12 @@ import SettingHeader from '../../../components/SettingHeader/SettingHeader';
 import {Formik} from 'formik';
 import styles from './styles';
 import Custom_Button from '../../../components/button/Custom_Button';
-import InputField from '../../../components/InputFiled';
+// import InputField from '../../../components/InputFiled';
 import COLORS from '../../../consts/colors';
 import CustomText from '../../../components/Text';
 import {resetPasswordValidationSchema} from '../../../Utills/Validations';
 import CustomSnackbar from '../../../components/CustomSnackbar/CustomSnackbar';
+import InputField from '../../../components/CustomSnackbar/InputFiled';
 const UpdatePassword = ({navigation}) => {
     const [snackbarVisible, setSnackbarVisible] = useState(false);
     const dismissSnackbar = () => {

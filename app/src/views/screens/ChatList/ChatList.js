@@ -12,8 +12,9 @@ import CustomText from '../../../components/Text';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import COLORS from '../../../consts/colors';
 import Images from '../../../consts/Images';
-import InputField from '../../../components/InputFiled';
+// import InputField from '../../../components/InputFiled';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import InputField from '../../../components/CustomSnackbar/InputFiled';
 
 const ChatList = ({navigation}) => {
   const [showInputField, setShowInputField] = useState(false);

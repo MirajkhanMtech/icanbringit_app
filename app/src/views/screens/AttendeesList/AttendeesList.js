@@ -8,7 +8,7 @@ import {
   Image,
 } from 'react-native';
 import React, {useRef, useState} from 'react';
-import InputField from '../../../components/InputFiled';
+// import InputField from '../../../components/InputFiled';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import CustomText from '../../../components/Text';
@@ -17,6 +17,7 @@ import Images from '../../../consts/Images';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import InnerButton from '../../../components/InnerButton/InnerButton';
 import Custom_Button from '../../../components/button/Custom_Button';
+import InputField from '../../../components/CustomSnackbar/InputFiled';
 
 const AttendeesList = () => {
   const [showInputField, setShowInputField] = useState(false);

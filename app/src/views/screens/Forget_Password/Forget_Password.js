@@ -34,9 +34,10 @@ import styles from './styles';
 import {Formik} from 'formik';
 import FVR_headers from '../../../components/button/FVR_headers';
 import {forgetPasswordValidationSchema} from '../../../Utills/Validations';
-import InputField from '../../../components/InputFiled';
+// import InputField from '../../../components/InputFiled';
 import COLORS from '../../../consts/colors';
 import CustomText from '../../../components/Text';
+import InputField from '../../../components/CustomSnackbar/InputFiled';
 
 LogBox.ignoreAllLogs();
 

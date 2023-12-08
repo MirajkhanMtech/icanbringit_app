@@ -25,13 +25,11 @@ const Images = {
   ChatDp2: require('../assets/images/ChatDp2.png'),
   avatar: require('../assets/images/avatar.png'),
   listAvatar: require('../assets/images/listAvatar.png'),
-
   Logo1: require('../assets/images/Logo1.png'),
   downloadBlurAvatar: require('../assets/images/downloadBlurAvatar.png'),
   downloadAvatar: require('../assets/images/downloadAvatar.png'),
   amazon: require('../assets/images/amazon.png'),
 
-  
   
 };
 

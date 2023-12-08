@@ -67,11 +67,14 @@ function Onboarding({ navigation }) {
                             }}
                         />
                     </View>
+                    <View style={{paddingHorizontal:30}}>
+
                     <TouchableOpacity
                     onPress={()=>{navigation.navigate('SignIn')}}
                     activeOpacity={0.7} style={styles.btn2}>
                         <Text style={styles.txt3}>Already have an account</Text>
                     </TouchableOpacity>
+                    </View>
                 </View>
                 <View style={styles.bigview}>
                     <Divider style={styles.divider} />

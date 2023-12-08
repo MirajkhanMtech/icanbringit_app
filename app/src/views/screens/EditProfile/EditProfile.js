@@ -13,7 +13,7 @@ import SettingHeader from '../../../components/SettingHeader/SettingHeader';
 import COLORS from '../../../consts/colors';
 import CustomText from '../../../components/Text';
 import Images from '../../../consts/Images';
-import InputField from '../../../components/InputFiled';
+// import InputField from '../../../components/InputFiled';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import RBSheet from 'react-native-raw-bottom-sheet';
@@ -21,6 +21,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Custom_Button from '../../../components/button/Custom_Button';
 import CustomSnackbar from '../../../components/CustomSnackbar/CustomSnackbar';
+import InputField from '../../../components/CustomSnackbar/InputFiled';
 
 const EditProfile = ({navigation}) => {
   const [openItem, setOpenItem] = useState(false);

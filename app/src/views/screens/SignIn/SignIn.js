@@ -17,10 +17,18 @@ import {Formik} from 'formik';
 import Signin_signup_header from '../../../components/button/Signin_signup_header';
 import styles from './styles';
 import {logInValidationSchema} from '../../../Utills/Validations';
-import InputField from '../../../components/InputFiled';
+// import InputField from '../../../components/InputFiled';
 import CustomText from '../../../components/Text';
+import InputField from '../../../components/CustomSnackbar/InputFiled';
+import {useDispatch} from 'react-redux';
+import {UserLogin} from '../../../Redux/authSlice';
+import BasUrl from '../../../BasUrl';
+import axios from 'axios';
 
-const  SignIn =({navigation}) => {
+const SignIn = ({navigation}) => {
+  const [isLoader, setIsLoader] = useState(false);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (Platform.OS === 'ios') {
       // do something specific for iOS
@@ -31,11 +39,53 @@ const  SignIn =({navigation}) => {
     }
   }, []);
 
-  const LogInUser = async (values, { setSubmitting, setValues }) => {
-    navigation.navigate('MyTabs',{screen:'Home'})
-  };
- 
+  const LogInUser = async (email, password) => {
+    // navigation.navigate('MyTabs',{screen:'Home'})
+    // let data = JSON.stringify({
+    //   "email": values.email,
+    //   "password": values.password,
+    //   "device_id": 'i dont know',
+    //   "signin_type": 'email',
+    // });
 
+    // let config = {
+    //   method: 'post',
+    //   maxBodyLength: Infinity,
+    //   url: `${BasUrl}/api/users/signIn`,
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   data: data,
+    // };
+    // dispatch(UserLogin(config));
+    let data = JSON.stringify({
+      email: email,
+      password: password,
+      device_id: 'i dont know',
+      signin_type: 'email',
+    });
+    console.log('dataaaaaaaa', data)
+
+    let config = {
+      method: 'post',
+      // maxBodyLength: Infinity,
+      url: `https://icanbringit-be.mtechub.com/api/users/signIn`,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: data,
+    };
+    dispatch(UserLogin(config));
+
+    axios
+      .request(config)
+      .then(response => {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(error => {
+        console.log('erorrrrrrrrrrrrrrrrr', error);
+      });
+  };
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -53,9 +103,7 @@ const  SignIn =({navigation}) => {
               password: '',
             }}
             validateOnMount={true}
-            onSubmit={(values, {setSubmitting, setValues}) =>
-            LogInUser(values, {setSubmitting, setValues})
-            }
+            onSubmit={values => LogInUser(values.email, values.password)}
             validationSchema={logInValidationSchema}>
             {({
               handleSubmit,
@@ -68,7 +116,7 @@ const  SignIn =({navigation}) => {
             }) => (
               <View style={styles.mainView}>
                 <Signin_signup_header
-                  title="I Can Bring It!"
+                  // title="I Can Bring It!"
                   title1="Sign In"
                 />
                 <View style={{marginHorizontal: '7%', marginTop: '8%'}}>
@@ -120,13 +168,16 @@ const  SignIn =({navigation}) => {
                     marginBottom: '5%',
                   }}>
                   <CustomButton
-                    title="Continue"
+                  
+                    // title="Continue"
                     load={false}
                     // checkdisable={inn == '' && cm == '' ? true : false}
                     customClick={() => {
                       handleSubmit(values);
                     }}
-                  />
+                  > 
+                title={'ggggggg'}
+                  </CustomButton>
                 </View>
                 <View style={styles.bigview}>
                   <Divider style={styles.divider} />
@@ -168,6 +219,6 @@ const  SignIn =({navigation}) => {
       </ScrollView>
     </SafeAreaView>
   );
-}
+};
 
 export default SignIn;

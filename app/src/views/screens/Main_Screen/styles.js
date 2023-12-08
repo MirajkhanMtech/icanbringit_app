@@ -47,7 +47,7 @@ const STYLES = StyleSheet.create({
         alignSelf: 'center',
     },
     btn2: {
-        width: '83%',
+        width: '100%',
         borderColor: COLORS.primary,
         borderWidth: 1.5,
         height: 45,

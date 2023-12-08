@@ -40,18 +40,58 @@ import {EmailInput, PasswordInput} from '../../../components/button/TextInput';
 import styles from './styles';
 import {SignUpValidationSchema} from '../../../Utills/Validations';
 import CustomText from '../../../components/Text';
-import InputField from '../../../components/InputFiled';
+import BasUrl from '../../../BasUrl';
+import axios from 'axios';
+import InputField from '../../../components/CustomSnackbar/InputFiled';
+import LoaderModal from '../../../components/LoaderModal';
 
 const SignUp = ({navigation}) => {
-  const RegisterUser = () => {
-    navigation.navigate('AboutYourSelf');
+  const [isLoader, setIsLoader] = useState(false);
+
+  const RegisterUser = async (email, password, confirmPassword) => {
+    setIsLoader(true);
+
+    let data = JSON.stringify({
+      email: email,
+      password: password,
+      confirmPassword: confirmPassword,
+      signup_type: 'email',
+      device_id: 'i dont know',
+    });
+    console.log('llllllllllllllllllllll', email, password, confirmPassword);
+
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: 'https://icanbringit-be.mtechub.com/api/users/create',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: data,
+    };
+
+    axios
+      .request(config)
+      .then(response => {
+        setIsLoader(false);
+        navigation.navigate('Email_Verification');
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(error => {
+        setIsLoader(false);
+
+        if (error.response && error.response.status === 409) {
+          console.log('User already exists with this email');
+        } else {
+          console.log(error.message);
+        }
+      });
   };
+
   useEffect(() => {
     if (Platform.OS === 'ios') {
-      // do something specific for iOS
       console.log('ios');
     } else {
-      // do something for Android or other platforms
       console.log('ios');
     }
   }, []);
@@ -70,8 +110,8 @@ const SignUp = ({navigation}) => {
             confirmPassword: '',
           }}
           validateOnMount={true}
-          onSubmit={(values, {setSubmitting, setValues}) =>
-            RegisterUser(values, {setSubmitting, setValues})
+          onSubmit={values =>
+            RegisterUser(values.email, values.password, values.confirmPassword)
           }
           validationSchema={SignUpValidationSchema}>
           {({
@@ -148,15 +188,18 @@ const SignUp = ({navigation}) => {
                   marginTop: '20%',
                   marginBottom: '5%',
                 }}>
-                <CustomButton
-                  title="Continue"
-                  load={false}
-                  // checkdisable={inn == '' && cm == '' ? true : false}
-                  customClick={() => {
-                    handleSubmit(values);
-                    navigation.navigate('AboutYourSelf');
-                  }}
-                />
+                {isLoader ? (
+                  <LoaderModal />
+                ) : (
+                  <CustomButton
+                    title="Continue"
+                    load={false}
+                    // checkdisable={inn == '' && cm == '' ? true : false}
+                    customClick={handleSubmit}
+
+                    // customClick={() => navigation.navigate('Email_Verification')}
+                  />
+                )}
               </View>
               <View style={styles.bigview}>
                 <Divider style={styles.divider} />

@@ -1,8 +1,12 @@
 import React, {useState} from 'react';
 import {StyleSheet, TextInput, View, TouchableOpacity} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
-import COLORS from '../../consts/colors';
-import Icon from '../../consts/Icons';
+// import COLORS from '../../consts/colors';
+// import Icon from '../../consts/Icons';
+// import COLORS from '../../Constants/Colors';
+// import Icon from '../../Constants/Icons';
+import COLORS from '../../../consts/colors';
+import Icon from '../../../consts/Icons';
 
 const InputField = ({
   style,
@@ -62,7 +66,7 @@ const InputField = ({
         underlineColorAndroid="transparent"
         multiline={multiline}
         textContentType={textContentType}
-        cursorColor={COLORS.black}
+        cursorColor={COLORS.BLACK}
       />
       {icon && (
         <TouchableOpacity
@@ -84,11 +88,11 @@ const styles = StyleSheet.create({
     marginTop: 20,
     paddingHorizontal: 40,
     color: 'black',
-    // backgroundColor: "#73737E",
+    // backgroundColor: COLORS.secondary_light,
     borderRadius: 10,
-    borderWidth: 0.5,
-    borderColor: 'black',
     opacity: 0.8,
+    borderColor:COLORS.greylight,
+    borderWidth:1
   },
   Righticon: {
     position: 'absolute',
@@ -99,7 +103,7 @@ const styles = StyleSheet.create({
   Lefticon: {
     position: 'absolute',
     alignSelf: 'flex-start',
-    bottom:5
+    bottom: 5,
   },
 });
 

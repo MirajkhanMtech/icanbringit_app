@@ -1,9 +1,10 @@
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React, { useState } from 'react';
 import Header from '../../../components/Header/Header';
-import InputField from '../../../components/InputFiled';
+// import InputField from '../../../components/InputFiled';
 import Custom_Button from '../../../components/button/Custom_Button';
 import CustomSnackbar from '../../../components/CustomSnackbar/CustomSnackbar';
+import InputField from '../../../components/CustomSnackbar/InputFiled';
 const DescribeIssue = ({navigation}) => {
     const [snackbarVisible, setSnackbarVisible] = useState(false);
     const dismissSnackbar = () => {
